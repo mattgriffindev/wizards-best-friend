@@ -119,13 +119,13 @@ particle {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    z-index: 1;
+    z-index: 999;
 }
 
 #man {
     position: absolute;
     visibility: hidden;
-    z-index: 2;
+    z-index: 999;
 }
 
 /*-----------------upper-body--*/
