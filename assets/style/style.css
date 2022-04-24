@@ -1,0 +1,968 @@
+@import url('https://fonts.googleapis.com/css2?family=Tapestry&family=Black+And+White+Picture&family=Roboto+Mono&display=swap');
+
+:root {
+    --hairOne: #ecf0f1;
+    --hairTwo: #d7d7d7;
+    --skinOne: #ffd9a8;
+    --skinTwo: #e5bb84;
+    --pupil: lightseagreen;
+    --white: #fff;
+    --suit: #ffd9a8;
+    --hat: #800080;
+    --robe: #800080;
+    --robeEdge: #BF40BF;
+    --star: gold;
+    --shoes: #906b52;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 1023px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    html {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 295px) {
+    html {
+        font-size: 6px;
+    }
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #343a40;
+}
+
+#frame {
+    height: 35rem;
+    width: 60rem;
+    position: relative;
+    border: 0.5rem solid #343a40;
+}
+
+/*------------------------------------------------------scene--*/
+
+#sky-container {
+    width: 100%;
+    height: 60%;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    background-color: rgb(135, 206, 235);
+    z-index: -9;
+}
+
+#grass-container {
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    bottom: 0rem;
+    left: 0rem;
+    background-color: rgb(166, 195, 94);
+    z-index: -9;
+}
+
+/*---------------------------------------------------particle--*/
+
+particle {
+    border-radius: 50%;
+    background-color: lightgray;
+    border: 0.25rem solid darkgray;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    opacity: 0;
+    z-index: 999;
+}
+
+/*-------------------------------------------------------man--*/
+
+#man-container {
+    height: 30rem;
+    width: 15rem;
+    position: absolute;
+    left: 4rem;
+    top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#man {
+    position: absolute;
+    visibility: hidden;
+    z-index: 2;
+}
+
+/*-----------------upper-body--*/
+
+.body {
+    height: 8rem;
+    width: 8rem;
+    position: relative;
+    top: 0rem;
+    left: 0rem;
+    border-radius: 50%;
+    background: var(--suit);
+    z-index: auto;
+}
+
+.body:after {
+    content: "";
+    height: 4rem;
+    width: 6rem;
+    position: absolute;
+    top: 4rem;
+    left: 1rem;
+    background: var(--suit);
+}
+
+.neck {
+    height: 3rem;
+    width: 2rem;
+    position: absolute;
+    top: -1.75rem;
+    left: 3rem;
+    border-radius: 1rem;
+    background: var(--skinOne);
+    z-index: -1;
+}
+
+.leftArm,
+.rightArm {
+    height: 5rem;
+    width: 1.25rem;
+    position: absolute;
+    top: 4rem;
+    background: var(--skinOne);
+}
+
+.rightArm {
+    left: 6.75rem;
+}
+
+.leftArm:after,
+.rightArm:after {
+    content: "";
+    height: 1.75rem;
+    width: 1.75rem;
+    position: absolute;
+    top: 3.5rem;
+    border-radius: 50%;
+    background-color: var(--skinOne);
+    z-index: -1;
+}
+
+.leftArm:after {
+    left: -0.5rem;
+}
+
+/*------------------------hat--*/
+
+.hat {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -9rem;
+    left: 1.5rem;
+    border-left: 3.5rem solid transparent;
+    border-right: 1.5rem solid transparent;
+    border-bottom: 5rem solid var(--hat);
+    z-index: 999;
+}
+
+.hat:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-bottom: 1.5rem solid var(--hat);
+    border-right: 1.5rem solid transparent;
+}
+
+.hat:after {
+    content: "";
+    height: 0.25rem;
+    width: 8.5rem;
+    position: absolute;
+    top: 5rem;
+    left: -5rem;
+    background: var(--hat);
+}
+
+/*------------------head/face--*/
+
+.head {
+    height: 6rem;
+    width: 4rem;
+    position: absolute;
+    top: -6rem;
+    left: 2rem;
+    border-radius: 4rem;
+    background: var(--skinOne);
+    border-width: 0 0 0.0625rem 0;
+    border-style: solid;
+    border-color: transparent transparent var(--skinTwo) transparent;
+    z-index: 5;
+}
+
+.face {
+    height: 3.5rem;
+    width: 3rem;
+    position: absolute;
+    top: 2rem;
+    left: 0.5rem;
+    z-index: 5;
+}
+
+.leftEye,
+.rightEye {
+    height: 1.6rem;
+    width: 1.25rem;
+    position: absolute;
+    border-radius: 4rem;
+    background: var(--white);
+}
+
+.rightEye {
+    left: 1.6rem;
+}
+
+.pupil {
+    height: 0.4rem;
+    width: 0.4rem;
+    position: absolute;
+    top: 0.6rem;
+    left: 0.4rem;
+    border-radius: 50%;
+    background: var(--pupil);
+}
+
+.nose {
+    height: 0.6rem;
+    width: 0.75rem;
+    position: absolute;
+    top: 1.5rem;
+    left: 1.1rem;
+    border-width: 0 0.0625rem 0.0625rem 0.0625rem;
+    border-style: solid;
+    border-color: transparent var(--skinTwo) var(--skinTwo) var(--skinTwo);
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background: var(--skinOne);
+    z-index: 1;
+}
+
+.mouth {
+    height: 0rem;
+    width: 1.5rem;
+    position: absolute;
+    top: 2.75rem;
+    left: 0.75rem;
+    border: 0.062rem solid var(--hairTwo);
+}
+
+.ears {
+    height: 1.25rem;
+    width: 5rem;
+    position: absolute;
+    top: 2.25rem;
+    left: -0.5rem;
+    border-radius: 4rem;
+    background: var(--skinOne);
+    z-index: -1;
+}
+
+/*-----------------------hair--*/
+
+.hairFrontLeft,
+.hairFrontRight {
+    height: 5.5rem;
+    width: 0.5rem;
+    position: absolute;
+    top: 2rem;
+    background-color: var(--hairOne);
+    border: 3px solid var(--hairTwo);
+}
+
+.hairFrontRight {
+    left: 3.5rem;
+}
+
+.hairBack {
+    height: 0;
+    width: 6.5rem;
+    position: absolute;
+    top: -4rem;
+    left: 0.75rem;
+    border-bottom: 8rem solid var(--hairOne);
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    z-index: auto;
+}
+
+.hairBack:after {
+    content: "";
+    height: 0;
+    width: 4.75rem;
+    position: absolute;
+    top: 0rem;
+    left: -1.1rem;
+    border-bottom: 8rem solid var(--hairTwo);
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    z-index: -9;
+}
+
+.moustacheLeft,
+.moustacheRight {
+    height: 0.8rem;
+    width: 2.5rem;
+    position: absolute;
+    top: 1.75rem;
+    left: -1rem;
+    border-radius: 100%;
+    border: 3px solid var(--hairTwo);
+    background: var(--hairOne);
+    z-index: -1;
+}
+
+.moustacheRight {
+    left: 1.5rem;
+}
+
+.beard {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 4.25rem;
+    border-left: 2rem solid transparent;
+    border-right: 2rem solid transparent;
+    border-top: 6rem solid var(--hairOne);
+    z-index: auto;
+}
+
+.beard:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -6rem;
+    left: -2.2rem;
+    border-left: 2.2rem solid transparent;
+    border-right: 2.2rem solid transparent;
+    border-top: 6rem solid var(--hairTwo);
+    z-index: -1;
+}
+
+/*-----------------lower-body--*/
+
+.hips {
+    height: 1.75rem;
+    width: 5.5rem;
+    position: absolute;
+    top: 8rem;
+    left: 1.25rem;
+    background: var(--suit);
+}
+
+.hips:after {
+    content: "";
+    height: 0.5rem;
+    width: 1rem;
+    position: absolute;
+    top: 1.2rem;
+    left: 2.25rem;
+    border-radius: 1rem 1rem 0 0;
+    border-width: 0 0 0.0625rem 0;
+    border-style: solid;
+    border-color: transparent transparent var(--background) transparent;
+    background: var(--white);
+}
+
+.leftLeg,
+.rightLeg {
+    height: 8rem;
+    width: 2.25rem;
+    position: absolute;
+    background: var(--suit);
+}
+
+.rightLeg {
+    left: 3.25rem;
+}
+
+.leftFoot,
+.rightFoot {
+    height: 1rem;
+    width: 3rem;
+    position: absolute;
+    top: 7rem;
+    border-radius: 3rem 3rem 0 0;
+    background: var(--shoes);
+}
+
+.leftFoot {
+    left: -0.75rem;
+}
+
+/*-----------------------robe--*/
+
+.robe {
+    height: 8rem;
+    width: 8rem;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    border-radius: 50%;
+    background: var(--robe);
+    z-index: 1;
+}
+
+.robe:before {
+    content: "";
+    position: absolute;
+    top: 6.5rem;
+    left: -0.25rem;
+    border-bottom: 8rem solid var(--robe);
+    border-left: 1.25rem solid transparent;
+    border-right: 1.25rem solid transparent;
+    height: 0;
+    width: 6rem;
+}
+
+.robe:after {
+    content: "";
+    height: 0.5rem;
+    width: 8.5rem;
+    position: absolute;
+    top: 14rem;
+    left: -0.25rem;
+    background-color: var(--robeEdge);
+}
+
+.robeJoin {
+    height: 10.5rem;
+    width: 0.1rem;
+    position: absolute;
+    top: 4rem;
+    left: 3.89rem;
+    background-color: var(--robeEdge);
+    z-index: 1;
+}
+
+.sleeveLeft,
+.sleeveRight {
+    position: absolute;
+    top: -0.5em;
+    border-bottom: 4rem solid var(--robe);
+    height: 0;
+    width: 2.25rem;
+}
+
+.sleeveLeft {
+    left: -1rem;
+    border-left: 1rem solid transparent;
+    border-right: 0.5rem solid transparent;
+}
+
+.sleeveLeft:after {
+    content: "";
+    height: 0.5rem;
+    width: 2rem;
+    position: absolute;
+    top: 3.75rem;
+    left: -1rem;
+    background-color: var(--robeEdge);
+}
+
+.sleeveRight {
+    left: 0rem;
+    border-left: 0.5rem solid transparent;
+    border-right: 1rem solid transparent;
+}
+
+.sleeveRight:after {
+    content: "";
+    height: 0.5rem;
+    width: 2rem;
+    position: absolute;
+    top: 3.75rem;
+    left: -0.25rem;
+    background-color: var(--robeEdge);
+}
+
+.star {
+    position: absolute;
+    font-size: 1.75rem;
+    color: var(--star);
+}
+
+.starOne {
+    top: 2rem;
+    left: 1rem;
+}
+
+.starTwo {
+    top: 4rem;
+    left: 5rem;
+}
+
+.starThree {
+    top: 7rem;
+    left: 1.5rem;
+}
+
+.starFour {
+    top: 10.5rem;
+    left: 5rem;
+}
+
+/*-------------------------------------------------------dog--*/
+
+:root {
+    --dog-fur: #C19A6B;
+    --dog-furTwo: #9D874D;
+    --dog-face: #EAD399;
+    --dog-nose: #5A4D2C;
+    --dog-eye: #FAF9F6;
+    --dog-pupil: #38101c;
+}
+
+#dog-container {
+    height: 30rem;
+    width: 15rem;
+    position: absolute;
+    top: 3rem;
+    left: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 2;
+}
+
+#dog {
+    position: relative;
+    transform: scale(0.8);
+    visibility: hidden;
+    z-index: 2;
+}
+
+.dog-head {
+    height: 5.5rem;
+    width: 6rem;
+    border-radius: 50%;
+    background-color: var(--dog-fur);
+    z-index: auto;
+}
+
+.dog-head:after {
+    content: "";
+    height: 3rem;
+    width: 4rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 2.75rem;
+    left: 1rem;
+    background-color: var(--dog-fur);
+    border: 1px solid var(--dog-furTwo);
+    z-index: auto;
+}
+
+.dog-left-eye,
+.dog-right-eye {
+    height: 2rem;
+    width: 1rem;
+    border-radius: 50%;
+    position: relative;
+    background-color: var(--dog-eye);
+}
+
+.dog-left-eye {
+    top: 1.75rem;
+    left: 1.5rem;
+}
+
+.dog-right-eye {
+    top: -0.25rem;
+    left: 3.5rem;
+}
+
+.dog-pupil {
+    height: 0.55rem;
+    width: 0.5rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.25rem;
+    border-radius: 50%;
+    background-color: var(--dog-pupil);
+}
+
+.dog-mouth {
+    height: 1rem;
+    width: 2rem;
+    position: absolute;
+    top: 4rem;
+    left: 2rem;
+    border-bottom: 1px solid black;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: 1;
+}
+
+.dog-nose {
+    height: 0.75rem;
+    width: 1rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 3.5rem;
+    left: 2.5rem;
+    background-color: var(--dog-nose);
+    z-index: 1;
+}
+
+.dog-left-ear,
+.dog-right-ear {
+    height: 1.25rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 2rem;
+    background-color: var(--dog-fur);
+}
+
+.dog-left-ear {
+    left: -1.5rem;
+    transform: rotate(-60deg);
+}
+
+.dog-right-ear {
+    left: 4rem;
+    transform: rotate(60deg);
+}
+
+.dog-body {
+    display: block;
+    width: 5.75rem;
+    height: 5.5rem;
+    position: relative;
+    top: -2rem;
+    background-color: var(--dog-fur);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    z-index: auto;
+}
+
+.dog-left-leg,
+.dog-right-leg {
+    height: 2rem;
+    width: 1.2rem;
+    position: absolute;
+    top: 3.25rem;
+    background-color: var(--dog-fur);
+    border-left: 1px solid var(--dog-furTwo);
+    border-right: 1px solid var(--dog-furTwo);
+    z-index: 1;
+}
+
+.dog-left-leg {
+    left: 1rem;
+}
+
+.dog-left-leg:after {
+    content: "";
+    height: 1rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 1.5rem;
+    left: -0.25rem;
+    background-color: var(--dog-fur);
+    border: 1px solid var(--dog-furTwo);
+}
+
+.dog-right-leg {
+    left: 3.5rem;
+}
+
+.dog-right-leg:after {
+    content: "";
+    height: 1rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 1.5rem;
+    left: -0.25rem;
+    background-color: var(--dog-fur);
+    border: 1px solid var(--dog-furTwo);
+}
+
+.dog-back-leg {
+    height: 1rem;
+    width: 6.5rem;
+    position: absolute;
+    top: 4.5rem;
+    left: -0.5rem;
+    border-radius: 1rem;
+    background-color: var(--dog-fur);
+}
+
+.dog-tail {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 2rem;
+    left: 5.5rem;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-bottom: 2rem solid var(--dog-fur);
+    transform: rotate(60deg);
+}
+
+/*------------------------------------------------------text--*/
+
+#header,
+#footer {
+    position: absolute;
+    color: rgb(20, 04, 84);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    text-align: center;
+    z-index: 2;
+}
+
+#header {
+    top: 0.2rem;
+    left: 0.2rem;
+}
+
+#footer {
+    right: 0.2rem;
+    bottom: 0.2rem;
+}
+
+#header a,
+#footer a {
+    color: rgb(20, 04, 84);
+    text-decoration: none;
+}
+
+.heart {
+    color: red;
+}
+
+.instruction {
+    width: 24rem;
+    padding: 0.5rem;
+    position: relative;
+    top: 4rem;
+    left: 1rem;
+    color: rgba(245, 245, 245, 0.8);
+    text-shadow: 4px 4px 30px rgba(53, 53, 53, 1);
+    font-size: 4rem;
+    text-align: center;
+    font-family: 'Black And White Picture', sans-serif;
+    z-index: 999;
+}
+
+/*-----------------------------------------------------house--*/
+
+#house-container {
+    height: 15rem;
+    width: 35rem;
+    position: absolute;
+    right: 0rem;
+    bottom: 12rem;
+}
+
+.house {
+    height: 10rem;
+    width: 15rem;
+    position: relative;
+    top: 5rem;
+    left: 10rem;
+    background-color: #BEBEBE;
+}
+
+.crenel {
+    height: 2rem;
+    width: 3rem;
+    position: absolute;
+    top: -2rem;
+    left: 6rem;
+    background-color: #B0B0B0;
+}
+
+.crenel:before {
+    content: "";
+    height: 2rem;
+    width: 3rem;
+    position: absolute;
+    left: -6rem;
+    background-color: #B0B0B0;
+}
+
+.crenel:after {
+    content: "";
+    height: 2rem;
+    width: 3rem;
+    position: absolute;
+    left: 6rem;
+    background-color: #B0B0B0;
+}
+
+.window {
+    height: 3rem;
+    width: 2rem;
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: #505050;
+}
+
+.window:after {
+    content: "";
+    height: 3rem;
+    width: 2rem;
+    position: inherit;
+    left: 10rem;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: #505050;
+}
+
+.door {
+    height: 6rem;
+    width: 5rem;
+    position: absolute;
+    top: 4rem;
+    left: 5rem;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: brown;
+    cursor: pointer;
+}
+
+.tower {
+    height: 15rem;
+    width: 8rem;
+    position: absolute;
+    background-color: #B0B0B0;
+}
+
+.tower-left {
+    top: -5rem;
+    left: -8rem;
+}
+
+.tower-right {
+    top: -5rem;
+    left: 15rem;
+}
+
+.tower-left:before,
+.tower-right:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: inherit;
+    top: -4rem;
+    border-left: 4rem solid transparent;
+    border-right: 4rem solid transparent;
+    border-bottom: 4rem solid red;
+}
+
+.tower-left:after,
+.tower-right:after {
+    content: "";
+    height: 3rem;
+    width: 2rem;
+    position: inherit;
+    top: 3rem;
+    left: 3rem;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-color: #505050;
+}
+
+.brick {
+    height: 1rem;
+    width: 1.5rem;
+    position: absolute;
+    background-color: #D0D0D0;
+    border: 1px solid #B0B0B0;
+}
+
+.brick1 {
+    top: 7rem;
+    left: 1rem;
+}
+
+.brick2 {
+    top: 8rem;
+}
+
+.brick3 {
+    top: 9rem;
+    left: 1rem;
+}
+
+.brick4 {
+    top: 11rem;
+    left: 5.5rem;
+}
+
+.brick5 {
+    top: 12rem;
+    left: 6.5rem;
+}
+
+.brick6 {
+    top: 2rem;
+    left: 6.5rem;
+}
+
+.brick7 {
+    top: 9rem;
+    left: 3rem;
+}
+
+.brick8 {
+    top: 10rem;
+    left: 2rem;
+}
